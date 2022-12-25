@@ -8,7 +8,33 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
-      <%= render 'books/index',books: @books %>
+      <table class='table table-hover table-inverse'>
+       <thead>
+        <tr>
+         <th></th>
+         <th>Title</th>
+         <th>Opinion</th>
+         <th colspan="3"></th>
+        </tr>
+       </thead>
+       <tbody>
+       <% @books.each do |book| %>
+       <% if(@user.id==book.user_id) %>
+        <tr>
+         <td><%= link_to user_path(book.user_id) do %>
+          <%= image_tag book.user.get_profile_image(50,50) %>
+          <% end %>
+         </td>
+         <td><%= link_to book_path(book.id) do %>
+             <%= book.title %>
+             <% end %>
+         </td>
+         <td><%= book.body %></td>
+       </tr>
+      <% end %>
+      <% end %>
+      </tbody>
+     </table>
     </div>
   </div>
 </div>
