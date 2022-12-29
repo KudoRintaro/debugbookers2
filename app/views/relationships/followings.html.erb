@@ -1,0 +1,29 @@
+<h1>Follow Users</h1>
+<% if @users.count==0 %>
+ <p>ユーザーはいません</p>
+<% else %>
+<table class="table">
+  <thead>
+    <th>image</th>
+    <th>name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @users.each do |followed| %>
+    <tr>
+      <td>
+        <%= image_tag followed.get_profile_image(50,50) %>
+      </td>
+      <td><%= followed.name %></td>
+      <td>フォロー数:<%= followed.following_user.count %></td>
+      <td>フォロワー数:<%= followed.follower_user.count %></td>
+      <td>
+        <%= link_to "Show", user_path(followed) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
