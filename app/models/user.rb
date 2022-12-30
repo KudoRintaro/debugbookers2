@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
   has_one_attached :profile_image
- 
+
  def follow(user_id)
    follower.create(followed_id: user_id)
  end
@@ -28,6 +28,19 @@ class User < ApplicationRecord
    following_user.include?(user)
  end
 
+ def self.looks(search, word)
+   if search=="perfect_match"
+     @user=User.where("name LIKE?", "#{word}")
+   elsif search=="forward_match"
+     @user=User.where("name LIKE?", "#{word}%")
+   elsif search=="backword_match"
+     @user=User.where("name LIKE?", "%#{word}")
+   elsif search=="partial_match"
+     @user=User.where("name LIKE?", "%#{word}%")
+   else
+     @user=User.all
+   end
+ end
 
   def get_profile_image(width,height)
     unless profile_image.attached?
