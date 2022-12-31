@@ -29,14 +29,11 @@
           </td>
         </tr>
       </table>
-      <div id="comments">
-        <%= render "book_comments/post_comments", book: @book, book_comments: @book_comments %>
+      <div id="comments_area">
+        <%= render "book_comments/post_comments", book_comments: @book_comments %>
       </div>
-      <div class="form-group">
-      <%= form_with model: [@book, @book_comment], remote: true do |f| %>
-      <%= f.text_area :comment, class:"form-control" %>
-      <%= f.submit "送信" %>
-      <% end %>
+      <div id="new-comment">
+        <%= render "book_comments/new-form", book: @book, book_comment: @book_comment %>
       </div>
     </div>
   </div>

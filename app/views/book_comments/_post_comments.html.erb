@@ -1,6 +1,6 @@
 <table class="table-borderless">
        <% book_comments.each do |book_comment| %>
-       <% if book_comment.book_id==book.id %>
+       <% if book_comment.book_id==params[:id].to_i %>
        <tr>
         <td>
           <%= link_to user_path(book_comment.user) do %>
@@ -11,10 +11,12 @@
         <td><%= book_comment.comment %></td>
         <% if book_comment.user==current_user %>
         <td>
-          <%= link_to "destroy", book_book_comment_path(book_comment), method: :delete, remote: true,class: "btn btn-danger btn-sm" %>
+          <%= link_to book_book_comment_path(book_comment), method: :delete, remote: true do %>
+          <button class="btn btn-danger btn-sm">Destroy</button>
+          <% end %>
         </td>
         <% end %>
        </tr>
         <% end %>
         <% end %>
-      </table>
+</table>
