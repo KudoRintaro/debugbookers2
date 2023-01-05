@@ -6,12 +6,13 @@ class BookCommentsController < ApplicationController
     comment.book_id=@book.id
     comment.save
     @book_comment=BookComment.new
-    @book_comments=BookComment.all
+    @book_comments=@book.book_comments
   end
 
   def destroy
-    BookComment.find(params[:book_id]).destroy
-    @book_comments=BookComment.all
+    BookComment.find(params[:id]).destroy
+    @book=Book.find(params[:book_id])
+    @book_comments=@book.book_comments
   end
 
   private
