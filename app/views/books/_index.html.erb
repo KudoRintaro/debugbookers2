@@ -22,6 +22,19 @@
         <td class="comments_count">
            <%= render "book_comments/comments_count", book: book %>
         </td>
+        <td id="book_rating<%= book.id %>"></td>
+        <script>
+        var elemindex<%= book.id %>=document.querySelector("#book_rating<%= book.id %>");
+        var optindex<%= book.id %>={
+          size: 30,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn: '<%= asset_path('star-on.png') %>',
+          half: false,
+          readOnly: true,
+          score: <%= book.confort %>
+        };
+        raty(elemindex<%= book.id %>,optindex<%= book.id %>)
+        </script>
       </tr>
     <% end %>
   </tbody>

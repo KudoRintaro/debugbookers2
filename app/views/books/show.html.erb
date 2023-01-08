@@ -22,13 +22,26 @@
           <td id="favorite_buttons_<%= @book.id %>">
            <%= render "favorites/favorite-btn", book: @book %>
           </td>
+          <td class="comments_count">
+            <%= render "book_comments/comments_count", book: @book %>
+          </td>
+          <td id="book_rating<%= @book.id %>"></td>
+           <script>
+             var elemshow<%= @book.id %>=document.querySelector("#book_rating<%= @book.id %>");
+             var optshow<%= @book.id %>={
+               size: 30,
+               starOff:  '<%= asset_path('star-off.png') %>',
+               starOn: '<%= asset_path('star-on.png') %>',
+               half: false,
+               readOnly: true,
+               score: <%= @book.confort %>
+             };
+             raty(elemshow<%= @book.id %>,optshow<%= @book.id %>)
+           </script>
             <% if(@book.user==current_user) %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
             <% end %>
-          <td class="comments_count">
-            <%= render "book_comments/comments_count", book: @book %>
-          </td>
         </tr>
       </table>
       <div class="comments_area">

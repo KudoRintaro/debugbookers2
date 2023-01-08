@@ -10,4 +10,23 @@
   <div class="form-group">
      <%= f.submit "Create Book", class: 'btn btn-success' %>
   </div>
+
+  <div class="form-group" id="post_raty">
+    <%= f.label :confort, "Rate", class: "star_title" %>
+    <%= f.hidden_field :confort, id: :rate_star %>
+  </div>
 <% end %>
+
+ <script>
+    var elem=document.querySelector("#post_raty");
+    var opt={
+    size: 20,
+    number: 5,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn: '<%= asset_path('star-on.png') %>',
+    score: 1,
+    scoreName: "book[confort]",
+    half: false,
+    };
+    raty(elem,opt);
+  </script>
