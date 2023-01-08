@@ -15,6 +15,19 @@
        <div class="form-group">
         <%= f.submit "Update Book", class: 'btn btn-secondary' %>
        </div>
+       <div id="book_rating<%= @book.id %>"></div>
+      <script>
+      var elemshow<%= @book.id %>=document.querySelector("#book_rating<%= @book.id %>");
+      var optshow<%= @book.id %>={
+        size: 30,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn: '<%= asset_path('star-on.png') %>',
+        half: false,
+        readOnly: true,
+        score: <%= @book.confort %>
+        };
+        raty(elemshow<%= @book.id %>,optshow<%= @book.id %>)
+      </script>
      <% end %>
   		<%= link_to 'Show', @book %> |
   		<%= link_to 'Back', books_path, class: "back" %>
