@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get "search/index"
 
+  get "search_book" => "books#search_book"
+
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]

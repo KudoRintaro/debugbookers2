@@ -7,4 +7,11 @@
    <%= f.submit "検索", class:"btn btn-sm btn-secondary" %>
   <% end %>
 </div>
+
+<div class="search_category_form">
+  <%= form_wifh url: search_book_path, local: true, method :get do |f| %>
+   <%= f.text_field :keyword %>
+   <%= f.submit "タグ検索", class:"btn btn-sm btn-secondary" %>
+  <% end %>
+</div>
 <% end %>
