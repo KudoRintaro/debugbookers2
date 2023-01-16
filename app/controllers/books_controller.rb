@@ -1,15 +1,15 @@
 class BooksController < ApplicationController
 
   def show
-    @booknew=Book.new
-    @book = Book.find(params[:id])
+    @book=Book.new
+    @bookfind = Book.find(params[:id])
     @book_comment=BookComment.new
     @book_comments=@book.book_comments
-    @user=User.find(@book.user.id)
+    @user=User.find(@bookfind.user.id)
   end
 
   def index
-    @booknew=Book.new
+    @book=Book.new
     if params[:star_count]
       @books=Book.star_count
     elsif params[:newbook]

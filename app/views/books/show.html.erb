@@ -2,45 +2,45 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
-      <div class="follow_button_<%= @book.user.id %>">
-      <%= render 'users/info', user: @book.user %>
+      <div class="follow_button_<%= @bookfind.user.id %>">
+      <%= render 'users/info', user: @bookfind.user %>
       </div>
       <h2 class="mt-3">New book</h2>
-      <%= render 'form', book: @booknew %>
+      <%= render 'form', book: @book %>
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
   		  <tr>
-          <td><%= link_to(@book.user) do %>
-            <%= image_tag @book.user.get_profile_image(80,80) %><br>
-            <%= @book.user.name %>
+          <td><%= link_to(@bookfind.user) do %>
+            <%= image_tag @bookfind.user.get_profile_image(80,80) %><br>
+            <%= @bookfind.user.name %>
             <% end %>
           </td>
-          <td><%= link_to @book.title, @book %></td>
-          <td><%= @book.body %></td>
+          <td><%= link_to @bookfind.title, @bookfind %></td>
+          <td><%= @bookfind.body %></td>
           <td id="favorite_buttons_<%= @book.id %>">
-           <%= render "favorites/favorite-btn", book: @book %>
+           <%= render "favorites/favorite-btn", book: @bookfind %>
           </td>
           <td class="comments_count">
-            <%= render "book_comments/comments_count", book: @book %>
+            <%= render "book_comments/comments_count", book: @bookfind %>
           </td>
-          <td id="book_rating<%= @book.id %>"></td>
+          <td id="book_rating<%= @bookfind.id %>"></td>
            <script>
-             var elemshow<%= @book.id %>=document.querySelector("#book_rating<%= @book.id %>");
-             var optshow<%= @book.id %>={
+             var elemshow<%= @bookfind.id %>=document.querySelector("#book_rating<%= @bookfind.id %>");
+             var optshow<%= @bookfind.id %>={
                size: 30,
                starOff:  '<%= asset_path('star-off.png') %>',
                starOn: '<%= asset_path('star-on.png') %>',
                half: false,
                readOnly: true,
-               score: <%= @book.confort %>
+               score: <%= @bookfind.confort %>
              };
-             raty(elemshow<%= @book.id %>,optshow<%= @book.id %>)
+             raty(elemshow<%= @bookfind.id %>,optshow<%= @bookfind.id %>)
            </script>
-            <% if(@book.user==current_user) %>
-            <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            <% if(@bookfind.user==current_user) %>
+            <td><%= link_to 'Edit', edit_book_path(@bookfind), class: "btn btn-sm btn-success" %></td>
+            <td><%= link_to 'Destroy', @bookfind, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
             <% end %>
         </tr>
       </table>
@@ -48,7 +48,7 @@
         <%= render "book_comments/post_comments", book_comments: @book_comments %>
       </div>
       <div class="new-comment">
-        <%= render "book_comments/new-form", book: @book, book_comment: @book_comment %>
+        <%= render "book_comments/new-form", book: @bookfind, book_comment: @book_comment %>
       </div>
     </div>
   </div>
